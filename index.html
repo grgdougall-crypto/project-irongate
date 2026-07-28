@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="description"
+        content="WarMachine Logistics employee cybersecurity orientation portal"
+    >
+    <title>WarMachine | Project IronGate</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <a class="brand" href="#" id="brandHomeLink" aria-label="WarMachine home">
+            <img
+                class="brand-logo-image"
+                src="assets/images/warmachine-mark.png"
+                alt=""
+                aria-hidden="true"
+            >
+
+            <div class="brand-copy">
+                <strong>WarMachine</strong>
+                <small>Logistics & Distribution</small>
+            </div>
+        </a>
+
+        <div class="portal-label">
+            Security Operations Academy
+        </div>
+    </header>
+
+    <main class="app-shell">
+
+        <!-- WELCOME -->
+        <section id="welcomeScreen" class="screen active-screen">
+            <div class="hero-layout">
+
+                <div class="hero-content">
+                    <p class="eyebrow">Employee Security Training</p>
+
+                    <h1>
+                        Every Operational Decision
+                        Has a Digital Consequence.
+                    </h1>
+
+                    <p class="hero-description">
+                        Complete five cybersecurity investigations using
+                        realistic warehouse simulations. Identify threats,
+                        make secure decisions, and earn operational access.
+                    </p>
+
+                    <div class="learner-name-group">
+                        <label for="learnerNameInput">
+                            Employee Name
+                        </label>
+
+                        <input
+                            id="learnerNameInput"
+                            name="learnerName"
+                            type="text"
+                            maxlength="60"
+                            autocomplete="name"
+                            placeholder="Enter your full name"
+                        >
+
+                        <p
+                            id="learnerNameError"
+                            class="form-error"
+                            aria-live="polite"
+                        ></p>
+                    </div>
+
+                    <div class="hero-actions">
+                        <button
+                            id="startOrientationBtn"
+                            class="primary-button"
+                            type="button"
+                        >
+                            Start Orientation
+                        </button>
+
+                        <button
+                            id="resumeOrientationBtn"
+                            class="secondary-button"
+                            type="button"
+                            hidden
+                        >
+                            Resume Orientation
+                        </button>
+                    </div>
+                </div>
+
+                <aside class="assignment-card">
+                    <p class="panel-label">Training Assignment</p>
+                    <h2>Cybersecurity Incident Response</h2>
+
+                    <div class="assignment-details">
+                        <div>
+                            <span>Cases</span>
+                            <strong>5</strong>
+                        </div>
+
+                        <div>
+                            <span>Estimated Time</span>
+                            <strong>10–15 Minutes</strong>
+                        </div>
+
+                        <div>
+                            <span>Completion Required</span>
+                            <strong>100%</strong>
+                        </div>
+                    </div>
+
+                    <div class="assignment-status">
+                        <span class="status-dot"></span>
+                        <span id="welcomeStatusText">Ready to Begin</span>
+                    </div>
+                </aside>
+
+            </div>
+        </section>
+
+
+        <!-- DASHBOARD -->
+        <section id="dashboardScreen" class="screen" hidden>
+
+            <div class="dashboard-heading">
+                <div>
+                    <p class="eyebrow">Security Operations Center</p>
+                    <p
+                        id="dashboardLearnerName"
+                        class="dashboard-learner-name"
+                    ></p>
+                    <h1>Cybersecurity Investigation Queue</h1>
+                    <p>
+                        Complete each investigation to unlock the next
+                        cybersecurity threat.
+                    </p>
+                </div>
+
+                <div class="dashboard-progress-tools">
+                    <div class="progress-card">
+                        <div
+                            id="progressRing"
+                        class="progress-ring"
+                        aria-label="Training progress"
+                    >
+                        <span id="progressPercent">0%</span>
+                    </div>
+
+                        <div>
+                            <p class="panel-label">Orientation Progress</p>
+                            <strong id="progressText">
+                                0 of 5 Cases Complete
+                            </strong>
+                        </div>
+                    </div>
+
+                    <button
+                        id="dashboardResetBtn"
+                        class="dashboard-reset-button"
+                        type="button"
+                    >
+                        Reset Training
+                    </button>
+                </div>
+            </div>
+
+            <div id="incidentGrid" class="incident-grid"></div>
+
+        </section>
+
+
+        <!-- REUSABLE INVESTIGATION SCREEN -->
+        <section id="incidentScreen" class="screen" hidden>
+
+            <button
+                id="backToDashboardBtn"
+                class="text-button"
+                type="button"
+            >
+                ← Return to Investigation Queue
+            </button>
+
+            <div class="incident-heading">
+                <div>
+                    <p id="caseEyebrow" class="eyebrow"></p>
+                    <h1 id="caseTitle"></h1>
+                    <p id="caseSubtitle" class="incident-subtitle"></p>
+                    <p id="caseSummary" class="threat-summary"></p>
+                </div>
+
+                <span id="caseSeverity" class="severity-badge"></span>
+            </div>
+
+            <div class="case-workspace">
+
+                <aside class="case-profile">
+                    <p class="panel-label">Threat Profile</p>
+                    <dl id="threatProfile"></dl>
+                </aside>
+
+                <div class="case-content">
+
+                    <section class="content-panel">
+                        <p class="section-label">Cyber Threat Briefing</p>
+                        <h2 id="briefingTitle"></h2>
+                        <p id="briefingText"></p>
+                        <p id="simulationText"></p>
+                    </section>
+
+                    <section class="content-panel incident-recreation-panel">
+                        <p class="section-label">Operational Incident Recreation</p>
+                        <h2 id="videoTitle"></h2>
+                        <p class="video-instruction">
+                            Click Play to observe the incident before making your decision.
+                        </p>
+
+                        <div class="incident-video-shell">
+                            <video
+                                id="incidentVideo"
+                                class="incident-video"
+                                controls
+                                controlslist="nodownload"
+                                playsinline
+                                preload="metadata"
+                            >
+                                Your browser does not support HTML5 video.
+                            </video>
+
+                            <div class="incident-video-details">
+                                <p id="videoPrompt"></p>
+                                <small id="videoMeta"></small>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section
+                        id="decisionPanel"
+                        class="content-panel decision-panel"
+                    >
+                        <p class="section-label">Operational Decision</p>
+                        <h2 id="decisionTitle"></h2>
+                        <p id="decisionPrompt"></p>
+
+                        <div
+                            id="decisionOptions"
+                            class="decision-options"
+                        ></div>
+
+                        <div
+                            id="decisionFeedback"
+                            class="decision-feedback"
+                            aria-live="polite"
+                        ></div>
+                    </section>
+
+                    <section
+                        id="cyberAnalysis"
+                        class="content-panel cyber-analysis"
+                        hidden
+                    >
+                        <div class="analysis-header">
+                            <div class="analysis-status">
+                                <span class="status-dot"></span>
+                                THREAT ANALYSIS ACTIVE
+                            </div>
+
+                            <p>
+                                Incident Findings & Security Recommendation
+                            </p>
+                        </div>
+
+                        <div class="analysis-sequence">
+                            <p>Decision recorded.</p>
+                            <p>Analyzing employee behavior...</p>
+                            <p>
+                                Comparing behavior with cyber threat
+                                patterns...
+                            </p>
+                        </div>
+
+                        <div class="threat-match">
+                            <p class="section-label">
+                                Threat Match Identified
+                            </p>
+                            <h2 id="analysisThreat"></h2>
+                            <p id="analysisText"></p>
+                        </div>
+
+                        <div class="threat-comparison">
+                            <article class="comparison-card">
+                                <p class="parallel-label">
+                                    Warehouse Analogy
+                                </p>
+                                <h3 id="physicalComparisonTitle"></h3>
+                                <p id="physicalComparisonText"></p>
+                            </article>
+
+                            <div
+                                class="comparison-symbol"
+                                aria-hidden="true"
+                            >
+                                =
+                            </div>
+
+                            <article class="comparison-card">
+                                <p class="parallel-label">
+                                    Cybersecurity Threat
+                                </p>
+                                <h3 id="cyberComparisonTitle"></h3>
+                                <p id="cyberComparisonText"></p>
+                            </article>
+                        </div>
+
+                        <div class="security-principle">
+                            <p class="section-label">
+                                Security Principle
+                            </p>
+                            <h3 id="principleTitle"></h3>
+                            <p id="principleText"></p>
+                        </div>
+                    </section>
+
+                    <section
+                        id="knowledgeCheck"
+                        class="content-panel knowledge-check"
+                        hidden
+                    >
+                        <p class="section-label">
+                            Cybersecurity Knowledge Check
+                        </p>
+
+                        <h2 id="knowledgeTitle"></h2>
+                        <p id="knowledgePrompt"></p>
+
+                        <div
+                            id="knowledgeOptions"
+                            class="knowledge-options"
+                        ></div>
+
+                        <div
+                            id="knowledgeFeedback"
+                            class="decision-feedback"
+                            aria-live="polite"
+                        ></div>
+
+                        <button
+                            id="completeInvestigationBtn"
+                            class="primary-button"
+                            type="button"
+                            hidden
+                        >
+                            Complete Investigation
+                        </button>
+                    </section>
+
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- COMPLETION -->
+        <section id="completionScreen" class="screen" hidden>
+
+            <div class="completion-shell">
+                <img
+                    class="certificate-brand-logo"
+                    src="assets/images/warmachine-logo-full.png"
+                    alt="WarMachine Logistics and Distribution"
+                >
+                <p class="certificate-tagline">
+                    Moving Freight. Protecting Data.
+                </p>
+                <p class="eyebrow">WarMachine Security Operations Academy</p>
+                <h1>Operational Readiness Certified</h1>
+
+                <p class="completion-intro">
+                    All five investigations have been completed. The learner has demonstrated secure operational judgment and cybersecurity awareness.
+                </p>
+
+                <div class="completion-grid">
+
+                    <article class="completion-card identity-card">
+                        <p class="panel-label">Employee Status</p>
+                        <h2>Certificate of Operational Readiness</h2>
+
+                        <dl>
+                            <div>
+                                <dt>Employee Name</dt>
+                                <dd id="completionLearnerName">
+                                    WarMachine Employee
+                                </dd>
+                            </div>
+
+                            <div>
+                                <dt>Employee ID</dt>
+                                <dd id="employeeId">WM-27481</dd>
+                            </div>
+
+                            <div>
+                                <dt>Cyber Threat Recognition</dt>
+                                <dd>100%</dd>
+                            </div>
+
+                            <div>
+                                <dt>Operational Readiness</dt>
+                                <dd>100%</dd>
+                            </div>
+
+                            <div>
+                                <dt>Cases Completed</dt>
+                                <dd>5 / 5</dd>
+                            </div>
+                        </dl>
+                    </article>
+
+                    <article class="completion-card">
+                        <p class="panel-label">Threats Mastered</p>
+                        <ul class="mastery-list">
+                            <li>Phishing</li>
+                            <li>Social Engineering</li>
+                            <li>Weak Passwords</li>
+                            <li>Unknown USB Devices</li>
+                            <li>Ransomware</li>
+                        </ul>
+                    </article>
+
+                </div>
+
+                <div class="completion-actions">
+                    <button
+                        id="reviewCasesBtn"
+                        class="secondary-button"
+                        type="button"
+                    >
+                        Review Investigations
+                    </button>
+
+                    <button
+                        id="printCertificateBtn"
+                        class="primary-button"
+                        type="button"
+                    >
+                        Print Certificate
+                    </button>
+
+                    <button
+                        id="restartOrientationBtn"
+                        class="text-button danger-text"
+                        type="button"
+                    >
+                        Reset Training Progress
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>WarMachine Logistics & Distribution</p>
+        <p>Interactive Employee Cybersecurity Training</p>
+    </footer>
+
+
+    <!-- =================================================
+         PRINT-ONLY CERTIFICATE
+         This is separate from the on-screen completion page
+         so it always prints as one landscape sheet.
+    ================================================== -->
+
+    <section
+        id="printCertificate"
+        class="print-certificate"
+        aria-label="Certificate of Operational Readiness"
+    >
+        <div class="print-certificate-frame">
+
+            <div class="print-certificate-corner corner-top-left"></div>
+            <div class="print-certificate-corner corner-top-right"></div>
+            <div class="print-certificate-corner corner-bottom-left"></div>
+            <div class="print-certificate-corner corner-bottom-right"></div>
+
+            <header class="print-certificate-brand">
+                <img
+                    src="assets/images/warmachine-mark.png"
+                    alt="WarMachine logo"
+                >
+
+                <div>
+                    <strong>WarMachine</strong>
+                    <span>Logistics &amp; Distribution</span>
+                    <small>Moving Freight. Protecting Data.</small>
+                </div>
+            </header>
+
+            <p class="print-certificate-academy">
+                Security Operations Academy
+            </p>
+
+            <h1>Certificate of Operational Readiness</h1>
+
+            <p class="print-certificate-intro">
+                This certifies that
+            </p>
+
+            <div class="print-certificate-recipient">
+                <span id="printLearnerName">
+                    WarMachine Employee
+                </span>
+            </div>
+
+            <p class="print-certificate-id">
+                Employee ID: <strong>WM-27481</strong>
+            </p>
+
+            <p class="print-certificate-statement">
+                has successfully completed the Employee Cybersecurity
+                Awareness Program and demonstrated the judgment required
+                to recognize and respond to operational cybersecurity threats.
+            </p>
+
+            <div class="print-certificate-modules">
+                <span>✓ Phishing</span>
+                <span>✓ Social Engineering</span>
+                <span>✓ Weak Passwords</span>
+                <span>✓ Unknown USB Devices</span>
+                <span>✓ Ransomware</span>
+            </div>
+
+            <div class="print-certificate-footer">
+
+                <div class="certificate-line-block">
+                    <strong id="printCompletionDate"></strong>
+                    <span>Completion Date</span>
+                </div>
+
+                <div class="certificate-seal">
+                    <img
+                        src="assets/images/warmachine-mark.png"
+                        alt=""
+                        aria-hidden="true"
+                    >
+                    <strong>Operational</strong>
+                    <span>Access Approved</span>
+                </div>
+
+                <div class="certificate-line-block">
+                    <strong>Security Operations Academy</strong>
+                    <span>Authorized Training Program</span>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <script src="cases.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
