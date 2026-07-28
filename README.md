@@ -1,137 +1,98 @@
-# Project IronGate — Final Polish Build
+# 🛡️ Project IronGate
+### Interactive Cybersecurity Training Platform
 
-WarMachine Logistics & Distribution Center
-Employee Cybersecurity Orientation Portal
+Interactive cybersecurity awareness platform featuring AI-generated incident recreations, warehouse-based security analogies, and scenario-driven employee training.
 
-## Open the project
+## 🚀 Live Demo
 
-1. Open this folder in VS Code.
+### https://grgdougall-crypto.github.io/project-irongate/
+
+---
+
+## Features
+
+- 🎥 Five AI-generated operational incident videos
+- 🏭 Warehouse-based cybersecurity analogies
+- 👤 Personalized learner experience
+- 📊 Progress tracking with browser storage
+- 🏆 Printable Certificate of Operational Readiness
+- 📱 Responsive desktop and mobile design
+- ♿ Keyboard accessibility and reduced-motion support
+- 🌐 Hosted with GitHub Pages
+
+---
+
+## Technologies Used
+
+- HTML5
+- CSS3
+- JavaScript (ES6)
+- HTML5 Video
+- Git & GitHub
+- GitHub Pages
+- AI-generated media (OpenAI Sora)
+
+---
+
+## Getting Started
+
+1. Open the project in VS Code.
 2. Open `index.html`.
-3. Use Live Server, or double-click `index.html` in File Explorer.
+3. Launch with Live Server or open directly in your browser.
 
-## Files
+---
 
-- `index.html` — application structure
-- `styles.css` — visual design and responsive layout
-- `cases.js` — all five investigation lessons
-- `app.js` — navigation, answers, progression, saved progress, and completion
-- `assets/images` — future logos and scenario images
-- `assets/videos` — future Sora videos
+## Project Structure
+```
 
-## Reset test progress
+Then keep your file list exactly as it is.
 
-Open the browser developer console and run:
+---
 
-resetIronGateProgress()
+After that, I'd create a section called:
 
-You may also use the Reset Training Progress button on the final screen.
+```markdown
+## Development History
+```
 
-## Add videos later
+and move **every version update** underneath it.
 
-Place generated MP4 files in `assets/videos`.
-The current version uses polished surveillance-style placeholders so the application works before videos are added.
+That way, the page flows like a professional software project:
 
+1. Hero
+2. Live Demo
+3. Features
+4. Technologies
+5. Getting Started
+6. File Structure
+7. Development History (v2.1 → v4.1)
 
-## Version 2.1 updates
+---
 
-- Integrated the original roadway-W WarMachine identity
-- Official company name: WarMachine Logistics & Distribution
-- Official tagline: Moving Freight. Protecting Data.
-- Renamed the portal to Security Operations Academy
-- Removed A.R.M.O.R. branding in favor of Threat Analysis language
-- Increased panel contrast while preserving the dark enterprise theme
-- Upgraded the completion screen and printable Certificate of Operational Readiness
+## One more suggestion
 
+Instead of this:
 
-## Layout correction
+```markdown
+### https://grgdougall-crypto.github.io/project-irongate/
+```
 
-- Corrected an extra closing HTML tag that caused the Threat Profile sidebar
-  and investigation content to stack incorrectly.
-- Removed the word “Center” from the footer company name.
+Use a clickable badge:
 
+```markdown
+[![Live Demo](https://img.shields.io/badge/🚀-Launch%20Live%20Demo-0A66C2?style=for-the-badge)](https://grgdougall-crypto.github.io/project-irongate/)
+```
 
-## Version 2.2 updates
+It renders as a large, professional button that's much harder to miss than a plain URL.
 
-- Reduced the website header height
-- Reduced the header logo by approximately 15%
-- Removed the tagline from the website header
-- Preserved the full Cybersecurity Investigation Queue title
-- Reduced the completion-screen logo so the title is the focal point
-- Reworked print sizing and spacing so the certificate fits on one landscape page
+## Overall
 
+I'd give the project itself an **A**. With a README organized this way, I'd bump it to an **A+** because the repository immediately answers the questions a recruiter has:
 
-## Version 2.3 updates
+- **What is this?** (Interactive Cybersecurity Training Platform)
+- **Can I try it?** (Live Demo button)
+- **What does it do?** (Features)
+- **What technologies were used?** (Tech stack)
+- **How was it built?** (Development history)
 
-- Restored the gold hover state for Begin Investigation and Review Completed Case
-- Corrected the certificate logo by using the complete original logo image
-- Removed certificate logo cropping
-- Enlarged and rebalanced the printable certificate
-- Forced the certificate to fill one landscape page without spilling to a second page
-
-
-## Version 3.0 updates
-
-- Added a dedicated print-only Certificate of Operational Readiness
-- Certificate uses exact US Letter landscape dimensions
-- On-screen website elements are removed from the print document
-- Certificate is designed to remain on one printed sheet
-- Rebuilt the certificate logo treatment using the uncropped WarMachine mark
-- Added automatic completion date
-- Preserved the gold Begin Investigation and Review Case hover effects
-
-
-## Version 3.1 updates
-
-- Added an employee-name field to the landing page
-- Saves the learner name in browser storage
-- Displays a personalized welcome message on the dashboard
-- Places the learner name on the completion screen
-- Prints the learner name as the certificate recipient
-- Retains employee ID WM-27481 as secondary certificate information
-- Added a visible Reset Training button to the Investigation Queue
-- Reset now clears progress and learner name
-- Pressing Enter in the name field starts the orientation
-
-
-## Final polish updates
-
-- Removed unused A.R.M.O.R. styling left from earlier versions
-- Preserved the approved Threat Analysis wording
-- Preserved learner name, dashboard reset, certificate personalization, and one-page print certificate
-- Standardized button transitions and gold investigation-button hover
-- Added clear keyboard-focus states
-- Added reduced-motion support
-- No new features were added; this build is ready for video integration
-
-
-## Version 4.0 — Final Presentation Build
-
-- Integrated all five finished incident-recreation videos
-- Replaced the surveillance placeholder with a responsive HTML5 video player
-- Added dynamic video loading for each investigation
-- Videos now wait for the learner to click Play
-- Pauses video when leaving an investigation
-- Renamed the video section to Operational Incident Recreation
-- Preserved learner identity, progress tracking, certificate printing, and final-polish styling
-
-### Included videos
-
-- WM-001-Phishing.mp4
-- WM-002-Social-Engineering.mp4
-- WM-003-Weak-Passwords.mp4
-- WM-004-Unknown-USB-Devices.mp4
-- WM-005-Ransomware.mp4
-
-
-## Version 4.1 — Guided Playback and Publishing Build
-
-- Removed video autoplay so learners can read the briefing first
-- Videos begin only when the learner clicks Play
-- Added a clear playback instruction above each video
-- Added `preload="metadata"` for efficient loading
-- Disabled the browser download control where supported
-- Renamed video headings to Operational Incident: [Threat]
-- Replaced Physical Simulation wording with Operational Incident Recreation
-- Replaced Physical Analogy labels with Warehouse Analogy
-- Updated the footer to Interactive Employee Cybersecurity Training
-- Prepared the project for GitHub and GitHub Pages publishing
+That structure makes the repository feel like a polished portfolio project rather than a class submission.
