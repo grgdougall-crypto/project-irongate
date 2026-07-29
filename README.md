@@ -9,6 +9,13 @@
 
 Interactive cybersecurity awareness platform that transforms traditional security training into an immersive, scenario-driven learning experience using realistic warehouse analogies and professionally produced operational incident videos.
 
+<p align="center">
+  <img
+    src="assets/images/project-irongate-dashboard.jpeg"
+    alt="Project IronGate Dashboard"
+    width="100%">
+</p>
+
 ---
 
 # 🚀 Live Demo
