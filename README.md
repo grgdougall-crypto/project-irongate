@@ -4,16 +4,23 @@
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Cybersecurity](https://img.shields.io/badge/Cybersecurity-Security%20Awareness-0B1F33?style=for-the-badge&logo=hackthebox&logoColor=white)
 ![GitHub Pages](https://img.shields.io/badge/Hosted%20on-GitHub%20Pages-222222?style=for-the-badge&logo=githubpages)
 ![DaVinci Resolve](https://img.shields.io/badge/DaVinci%20Resolve-233A51?style=for-the-badge)
 
 Interactive cybersecurity awareness platform that transforms traditional security training into an immersive, scenario-driven learning experience using realistic warehouse analogies and professionally produced operational incident videos.
 
+## Dashboard Preview
+
+Project IronGate provides learners with an interactive investigation dashboard where they complete operational cybersecurity scenarios, track progress, and earn certification upon completion.
+
 <p align="center">
-  <img
-    src="assets/images/project-irongate-dashboard.jpeg"
-    alt="Project IronGate Dashboard"
-    width="100%">
+  <a href="https://grgdougall-crypto.github.io/project-irongate/">
+    <img
+      src="assets/images/project-irongate-dashboard.jpeg"
+      alt="Project IronGate Dashboard"
+      width="100%">
+  </a>
 </p>
 
 ---
