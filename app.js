@@ -861,6 +861,186 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
+   async function generateCertificatePDF() {
+
+    const certificate =
+        document.getElementById("printCertificate");
+
+    if (!certificate) {
+        console.error("Certificate element was not found.");
+        return;
+    }
+
+    try {
+
+        printCertificateBtn.disabled = true;
+        printCertificateBtn.textContent = "Generating PDF...";
+
+        /*
+         * Collect the rules currently stored inside @media print.
+         * The cloned document will use those same rules as normal
+         * screen styles while html2canvas captures the certificate.
+         */
+        let printRules = "";
+
+        for (const styleSheet of document.styleSheets) {
+
+            try {
+
+                for (const rule of styleSheet.cssRules) {
+
+                    if (
+                        rule.type === CSSRule.MEDIA_RULE &&
+                        rule.conditionText
+                            .toLowerCase()
+                            .includes("print")
+                    ) {
+
+                        for (const innerRule of rule.cssRules) {
+                            printRules += `${innerRule.cssText}\n`;
+                        }
+                    }
+                }
+
+            } catch (error) {
+
+                console.warn(
+                    "A stylesheet could not be inspected.",
+                    error
+                );
+            }
+        }
+
+        const canvas = await html2canvas(
+            certificate,
+            {
+                scale: 2,
+                useCORS: true,
+                backgroundColor: "#ffffff",
+                width: 1056,
+                height: 816,
+                windowWidth: 1056,
+                windowHeight: 816,
+
+                ignoreElements: (element) =>
+                    element.tagName === "VIDEO",
+
+                onclone: (clonedDocument) => {
+
+                    const style =
+                        clonedDocument.createElement("style");
+
+                    style.textContent = printRules;
+
+                    clonedDocument.head.appendChild(style);
+
+                    const clonedCertificate =
+                        clonedDocument.getElementById(
+                            "printCertificate"
+                        );
+
+                    clonedDocument
+                        .querySelectorAll("video")
+                        .forEach((video) => video.remove());
+
+                    if (clonedCertificate) {
+
+                        clonedCertificate.style.setProperty(
+                            "display",
+                            "block",
+                            "important"
+                        );
+
+                        clonedCertificate.style.setProperty(
+                            "visibility",
+                            "visible",
+                            "important"
+                        );
+
+                        clonedCertificate.style.setProperty(
+                            "position",
+                            "fixed",
+                            "important"
+                        );
+
+                        clonedCertificate.style.setProperty(
+                            "inset",
+                            "0",
+                            "important"
+                        );
+
+                        clonedCertificate.style.setProperty(
+                            "width",
+                            "11in",
+                            "important"
+                        );
+
+                        clonedCertificate.style.setProperty(
+                            "height",
+                            "8.5in",
+                            "important"
+                        );
+
+                        clonedCertificate.style.setProperty(
+                            "opacity",
+                            "1",
+                            "important"
+                        );
+                    }
+                }
+            }
+        );
+
+        const imageData =
+            canvas.toDataURL("image/jpeg", 0.98);
+
+        const { jsPDF } = window.jspdf;
+
+        const pdf = new jsPDF({
+            orientation: "landscape",
+            unit: "in",
+            format: "letter"
+        });
+
+        pdf.addImage(
+            imageData,
+            "JPEG",
+            0,
+            0,
+            11,
+            8.5,
+            undefined,
+            "FAST"
+        );
+
+        const safeLearnerName =
+            (learnerName || "Learner")
+                .trim()
+                .replace(/[^a-z0-9]+/gi, "_");
+
+        pdf.save(
+            `Project_IronGate_Certificate_${safeLearnerName}.pdf`
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Certificate PDF generation failed:",
+            error
+        );
+
+        window.alert(
+            "The certificate could not be generated. Please try again."
+        );
+
+    } finally {
+
+        printCertificateBtn.disabled = false;
+        printCertificateBtn.textContent =
+            "Download Certificate PDF";
+    }
+}
+    
     completeInvestigationBtn.addEventListener(
         "click",
         completeActiveCase
@@ -879,7 +1059,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     printCertificateBtn.addEventListener(
         "click",
-        () => window.print()
+        generateCertificatePDF
     );
 
 
